@@ -58,6 +58,7 @@ function requireAdmin(req, res, next) {
 // ---- Public routes ----
 
 app.get('/api/state', (req, res) => {
+  res.set('Cache-Control', 'no-store');
   const data = loadData();
   // signupLog contains emails and IPs — never expose it on the public endpoint.
   res.json({ leaderboard: data.leaderboard, queue: data.queue, matchesPlayed: data.matchesPlayed });
